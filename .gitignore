@@ -1,0 +1,57 @@
+﻿# ==============================================================================
+# South District RP - .gitignore
+# ==============================================================================
+
+# Fichiers d'environnement et secrets
+.env
+.env.*
+!.env.example
+api/.env
+api/.env.*
+!api/.env.example
+
+# Clefs et certificats
+*.key
+*.pem
+*.cert
+*.crt
+
+# Fichiers et dossiers d'uploads utilisateurs (seuls les .gitkeep et .htaccess sont versionnes)
+uploads/avatars/*
+!uploads/avatars/.gitkeep
+!uploads/avatars/.htaccess
+uploads/candidatures/*
+!uploads/candidatures/.gitkeep
+uploads/entreprise/*
+!uploads/entreprise/.gitkeep
+uploads/signatures/*
+!uploads/signatures/.gitkeep
+
+# Caches dynamiques et logs serveurs
+api/logs/*.log
+api/server/cache_fivem.json
+*.log
+
+# Archives volumineuses et sauvegardes de base de donnees
+south-district.fr.zip
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.sql
+*.bak
+
+# Dependances Node & build
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Fichiers systeme et IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+desktop.ini

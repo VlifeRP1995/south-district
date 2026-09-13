@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /includes/
+Disallow: /data/
+Disallow: /vendor/
+
+Sitemap: https://www.south-district.fr/sitemap.php

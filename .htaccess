@@ -1,0 +1,123 @@
+# South District RP — Apache / LiteSpeed
+Options -Indexes -MultiViews
+ServerSignature Off
+DirectoryIndex index.html index.php
+
+# Protection configuration et secrets
+<FilesMatch "(?i)^(config\.php|config\.gate\.php|\.env)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Empêche l’accès direct aux fichiers / dossiers cachés
+  RewriteRule "(^|/)\." - [F]
+
+  # Empêche l’accès direct aux dossiers internes sensibles
+  RewriteRule ^(bin|data|includes|api/src)(?:/|$) - [F,L]
+
+  # API + assets PHP : ne pas réécrire en .html
+  RewriteRule ^api(?:/|$) - [L]
+  RewriteRule ^uploads(?:/|$) - [L]
+
+  # Referer scrapers (SaveWeb2ZIP / Webpage2ZIP / bots associés)
+  RewriteCond %{HTTP_REFERER} (saveweb2zip|webpage2zip|webtozip|saveweb\.|httrack|webcopier|sitesucker|teleport|webzip|getright|offline\ explorer|webtozip_bot) [NC]
+  RewriteRule .* - [F,L]
+
+  # Anti-copie / scrapers / téléchargeurs offline (best-effort)
+  RewriteCond %{HTTP_USER_AGENT} (^$|SaveWeb|saveweb2zip|webtozip|Webpage2ZIP|HTTrack|WebCopier|Offline\ Explorer|wget|libwww|scrapy|python-requests|Go-http-client|HttpClient|Java/|okhttp|HeadlessChrome|PhantomJS|SlimerJS|Sitesucker|Teleport|WebZIP|Offline\ Commander|WebDownloader|GetRight|FlashGet|IDM|Internet\ Download|aria2|SiteSnagger|PageDumper|heritrix|archive\.org_bot|ia_archiver|CCBot|Bytespider|petalsearch|webtozip_bot|@webtozip) [NC]
+  RewriteRule .* - [F,L]
+
+  # Bloque les requêtes sans Accept navigateur typique (hors assets)
+  RewriteCond %{HTTP_USER_AGENT} !^$
+  RewriteCond %{HTTP_ACCEPT} ^$
+  RewriteCond %{REQUEST_URI} !\.(png|jpg|jpeg|gif|webp|svg|ico|woff2?|mp4|webm)$ [NC]
+  RewriteCond %{REQUEST_URI} !^/api/ [NC]
+  RewriteRule .* - [F,L]
+
+  # Hotlink ZIP / archives
+  RewriteCond %{HTTP_REFERER} !^$
+  RewriteCond %{HTTP_REFERER} !%{HTTP_HOST} [NC]
+  RewriteRule \.(zip|rar|7z)$ - [F,L]
+
+  # Pas de Range sur HTML (anti dump partiel)
+  RewriteCond %{REQUEST_URI} \.(html?)$ [NC]
+  RewriteCond %{HTTP:Range} !^$
+  RewriteRule .* - [F,L]
+
+  # /index et /index.html → /accueil
+  RewriteCond %{THE_REQUEST} \s/+index(?:\.html)?[\s?] [NC]
+  RewriteRule ^index(?:\.html)?$ /accueil [R=301,L]
+
+  # /page.html → /page (301, query string conservée)
+  RewriteCond %{THE_REQUEST} \s/+([^?\s]*?)\.html[\s?] [NC]
+  RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+  # Fichiers / dossiers réels (css, js, images, php…)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Accueil : /accueil → index.php
+  RewriteRule ^accueil/?$ index.php [L]
+
+  # Pages PHP sans extension (ex: /patch-notes → patch-notes.php)
+  RewriteCond %{DOCUMENT_ROOT}/$1.php -f [OR]
+  RewriteCond %{REQUEST_FILENAME}.php -f
+  RewriteRule ^(.+?)/?$ $1.php [L]
+
+  # Pages HTML sans extension
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; media-src 'self';"
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header set X-XSS-Protection "0"
+  Header set X-Robots-Tag "noarchive, nosnippet, noimageindex"
+  Header always set X-Download-Options "noopen"
+
+  <FilesMatch "\.(html?|php)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+  </FilesMatch>
+
+  <FilesMatch "\.(png|jpg|jpeg|gif|webp|svg|ico|woff2?|mp4)$">
+    Header set Cache-Control "public, max-age=604800, immutable"
+  </FilesMatch>
+</IfModule>
+
+<FilesMatch "(?i)\.(env|log|md|map|htaccess|htpasswd|bak|sql)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+<IfModule mod_mime.c>
+  AddType text/css .css
+  AddType application/javascript .js
+  AddType image/svg+xml .svg
+  AddType font/woff2 .woff2
+  AddType video/mp4 .mp4
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
