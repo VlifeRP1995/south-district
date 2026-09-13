@@ -1,4 +1,4 @@
-const CACHE_NAME = 'south-district-v6';
+const CACHE_NAME = 'south-district-v7';
 const ASSETS_TO_CACHE = [
   '/manifest.php',
   '/offline.html'
