@@ -53,6 +53,7 @@
         display: flex !important;
         flex-direction: column !important;
         margin: clamp(.35rem, .75vh, .55rem) .4rem .4rem !important;
+        border-radius: var(--radius-md) !important;
         overflow: hidden !important;
       }
       .cp-hero--partenaires .cp-page__scroll {

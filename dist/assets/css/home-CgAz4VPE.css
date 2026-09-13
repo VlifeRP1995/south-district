@@ -448,7 +448,7 @@
 }
 
 .cp-shell {
-  border-radius: var(--radius-md);
+  border-radius: var(--shell-corner);
   border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
   isolation: isolate;
@@ -466,6 +466,8 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  transform: translateZ(0);
 }
 
 /* Hero : coins carres (0) par defaut sur l'accueil car suivi de .cp-recruit */
@@ -477,13 +479,16 @@
 /* Hero sur les pages secondaires (sans .cp-recruit) : coins bas arrondis (0 0 8px 8px) */
 .cp-shell > .cp-hero:last-child,
 .cp-hero--page,
-body[class*="cp-hero--"] .cp-hero {
+body[class*="cp-hero--"] .cp-hero,
+.cp-shell > .flora-carte-page-shell {
   border-radius: 0 0 var(--shell-corner) var(--shell-corner);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: var(--shell-corner);
   border-bottom-right-radius: var(--shell-corner);
   overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  transform: translateZ(0);
 }
 
 /* Recruit (barre basse sur l'accueil) : coins bas arrondis (0 0 8px 8px), coins hauts carres */
@@ -494,6 +499,8 @@ body[class*="cp-hero--"] .cp-hero {
   border-bottom-left-radius: var(--shell-corner);
   border-bottom-right-radius: var(--shell-corner);
   overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  transform: translateZ(0);
 }
 
 /* Panneaux interieurs (hero panel, mosaic, photo) : 8px regulier */
