@@ -28,7 +28,7 @@ function render_discord_error(string $message): never
             .error-card {
                 background: rgba(255, 255, 255, 0.03);
                 border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 12px;
+                border-radius: var(--radius-md);
                 padding: 2.5rem;
                 text-align: center;
                 max-width: 450px;
@@ -52,7 +52,7 @@ function render_discord_error(string $message): never
                 color: #071612;
                 text-decoration: none;
                 padding: 0.8rem 2rem;
-                border-radius: 8px;
+                border-radius: var(--radius-md);
                 font-weight: 700;
                 font-size: 0.95rem;
                 transition: background 0.2s;

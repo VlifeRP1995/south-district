@@ -56,7 +56,7 @@ if (is_file($cacheFile)) {
     #fm-container {
       background: #11131c;
       border: 1px solid #161a25;
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -86,7 +86,7 @@ if (is_file($cacheFile)) {
     
     #fm-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 12px; }
     #fm-icon { 
-      width: 84px; height: 84px; border-radius: 4px; 
+      width: 84px; height: 84px; border-radius: var(--radius-sm); 
       object-fit: cover; flex-shrink: 0; background: #1a1a1c; 
     }
     #fm-title-block { min-width: 0; padding-top: 2px; }
@@ -102,13 +102,13 @@ if (is_file($cacheFile)) {
     }
     #fm-meta .dot { color: #555; font-size: 12px; }
     #fm-players-val { color: #e4e4e7; }
-    #fm-flag { width: 16px; height: 12px; border-radius: 2px; object-fit: cover; }
+    #fm-flag { width: 16px; height: 12px; border-radius: var(--radius-sm); object-fit: cover; }
 
     #fm-dlc { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
     .fm-dlc-pill {
       background: #1c202e;
       border: 1px solid #161a25;
-      border-radius: 4px; padding: 4px 10px;
+      border-radius: var(--radius-sm); padding: 4px 10px;
       font-size: 11px; color: #a1a1aa;
       display: flex; align-items: center;
     }
@@ -116,7 +116,7 @@ if (is_file($cacheFile)) {
     #fm-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .fm-btn {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 24px; border-radius: 9999px; font-size: 14px;
+      padding: 10px 24px; border-radius: var(--radius-full); font-size: 14px;
       font-weight: 600; cursor: pointer; border: none;
       text-decoration: none; transition: all .2s; line-height: 1;
     }
@@ -146,7 +146,7 @@ if (is_file($cacheFile)) {
     .fm-tag {
       background: #1c202e;
       border: 1px solid #161a25;
-      border-radius: 4px; padding: 4px 10px;
+      border-radius: var(--radius-sm); padding: 4px 10px;
       font-size: 12px; color: #a1a1aa;
     }
 
@@ -155,14 +155,14 @@ if (is_file($cacheFile)) {
     .fm-res-badge {
       background: #1c202e;
       border: 1px solid #161a25;
-      border-radius: 4px; padding: 4px 8px;
+      border-radius: var(--radius-sm); padding: 4px 8px;
       font-size: 11px; color: #a1a1aa;
       font-family: ui-monospace, "Cascadia Mono", monospace;
     }
     #fm-showall {
       background: transparent; color: #fff;
       border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 9999px; padding: 4px 12px;
+      border-radius: var(--radius-full); padding: 4px 12px;
       font-size: 11px; font-weight: 600; cursor: pointer; transition: 0.2s;
     }
     #fm-showall:hover { border-color: #fff; }
@@ -194,7 +194,7 @@ if (is_file($cacheFile)) {
     
     #fm-drawer-close {
       background: transparent; border: none; color: #a1a1aa;
-      cursor: pointer; padding: 4px; border-radius: 4px; transition: 0.2s;
+      cursor: pointer; padding: 4px; border-radius: var(--radius-sm); transition: 0.2s;
     }
     #fm-drawer-close:hover { color: #fff; background: rgba(255,255,255,0.1); }
 
@@ -202,7 +202,7 @@ if (is_file($cacheFile)) {
     
     #fm-res-filter {
       width: 100%; background: #1a1a1c; border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 6px; padding: 10px 14px; color: #fff; font-size: 13px;
+      border-radius: var(--radius-md); padding: 10px 14px; color: #fff; font-size: 13px;
       margin-bottom: 20px; outline: none; transition: 0.2s;
     }
     #fm-res-filter:focus { border-color: #1ec776; }
@@ -211,7 +211,7 @@ if (is_file($cacheFile)) {
     .fm-drawer-res-item {
       background: #1c202e;
       border: 1px solid #161a25;
-      border-radius: 4px; padding: 5px 10px;
+      border-radius: var(--radius-sm); padding: 5px 10px;
       font-size: 12px; color: #a1a1aa;
       font-family: ui-monospace, "Cascadia Mono", monospace;
     }

@@ -133,7 +133,7 @@
         display: flex !important;
         flex-direction: column !important;
         overflow: hidden !important;
-        border-radius: 8px !important;
+        border-radius: var(--radius-md);
         margin-bottom: 0 !important;
         background: rgba(10, 13, 16, .6) !important;
       }
@@ -149,7 +149,7 @@
         align-items: center !important;
         gap: .45rem !important;
         padding: .35rem .75rem !important;
-        border-radius: 6px !important;
+        border-radius: var(--radius-md);
         background: rgba(255, 255, 255, .04) !important;
         border: 1px solid rgba(255, 255, 255, .09) !important;
         font-family: Inter, system-ui, sans-serif !important;
@@ -164,7 +164,7 @@
         display: none !important;
       }
       .sd-partenaires-filter {
-        border-radius: 6px !important;
+        border-radius: var(--radius-md);
         background: rgba(255, 255, 255, .04) !important;
         border: 1px solid rgba(255, 255, 255, .08) !important;
       }
@@ -216,7 +216,7 @@
         position: absolute !important;
         width: clamp(480px, 32vw, 520px) !important;
         height: clamp(400px, 50vh, 470px) !important;
-        border-radius: 8px !important;
+        border-radius: var(--radius-md);
       }
       .sd-pro-card__banner {
         height: clamp(95px, 13vh, 140px) !important;
@@ -229,7 +229,7 @@
       .sd-pro-card__logo {
         width: clamp(56px, 6.8vh, 68px) !important;
         height: clamp(56px, 6.8vh, 68px) !important;
-        border-radius: 8px !important;
+        border-radius: var(--radius-md);
       }
       .sd-pro-card__title {
         font-size: clamp(1.15rem, 1.75vh, 1.35rem) !important;
@@ -249,7 +249,7 @@
       .sd-pro-card__badge {
         font-size: .7rem !important;
         padding: 4px 9px !important;
-        border-radius: 6px !important;
+        border-radius: var(--radius-md);
       }
       .sd-pro-card__desc {
         margin: .25rem 0 .5rem !important;
@@ -268,7 +268,7 @@
         padding: clamp(7px, 1vh, 10px) 16px !important;
         font-size: .76rem !important;
         font-weight: 700 !important;
-        border-radius: 8px !important;
+        border-radius: var(--radius-md);
       }
 
       /* Transitions carrousel 3D */
@@ -331,7 +331,7 @@
         font-weight: 700 !important;
         text-transform: uppercase !important;
         letter-spacing: .06em !important;
-        border-radius: .5rem !important;
+        border-radius: var(--radius-md);
         background: var(--sd-neon, #1ee6a0) !important;
         border: 1px solid rgba(30, 230, 160, .45) !important;
         color: #071612 !important;
