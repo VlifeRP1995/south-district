@@ -443,6 +443,10 @@
 /* ==========================================================================
    Architecture de coins symetriques (var(--radius-md) = 8px) - Regle definitive unique
    ========================================================================== */
+:root {
+  --shell-corner: var(--radius-md);
+}
+
 .cp-shell {
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -456,9 +460,9 @@
 /* Nav & Nav Bar : coins hauts arrondis (8px 8px 0 0), coins bas carres (0 0) pour liaison hermetique avec le hero */
 .cp-nav,
 .cp-nav__bar {
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-  border-top-left-radius: var(--radius-md);
-  border-top-right-radius: var(--radius-md);
+  border-radius: var(--shell-corner) var(--shell-corner) 0 0;
+  border-top-left-radius: var(--shell-corner);
+  border-top-right-radius: var(--shell-corner);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   overflow: hidden;
@@ -474,21 +478,21 @@
 .cp-shell > .cp-hero:last-child,
 .cp-hero--page,
 body[class*="cp-hero--"] .cp-hero {
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border-radius: 0 0 var(--shell-corner) var(--shell-corner);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border-bottom-left-radius: var(--radius-md);
-  border-bottom-right-radius: var(--radius-md);
+  border-bottom-left-radius: var(--shell-corner);
+  border-bottom-right-radius: var(--shell-corner);
   overflow: hidden;
 }
 
 /* Recruit (barre basse sur l'accueil) : coins bas arrondis (0 0 8px 8px), coins hauts carres */
 .cp-recruit {
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border-radius: 0 0 var(--shell-corner) var(--shell-corner);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border-bottom-left-radius: var(--radius-md);
-  border-bottom-right-radius: var(--radius-md);
+  border-bottom-left-radius: var(--shell-corner);
+  border-bottom-right-radius: var(--shell-corner);
   overflow: hidden;
 }
 
